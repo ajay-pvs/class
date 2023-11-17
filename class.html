@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    <script>
+      // 1. Write a JavaScript program to create a class called "Person" with properties for name, age and country. Include a method to display the person's details. Create two instances of the 'Person' class and display their details
+      class Person {
+        constructor(name, age, country) {
+          this.name = name;
+          this.age = age;
+          this.country = country;
+        }
+        display() {
+          console.log(
+            `Name: ${this.name}, Age: ${this.age}, Country: ${this.country}`
+          );
+        }
+      }
+      const person1 = new Person("ajay", 25, "USA");
+      const person2 = new Person("shan", 30, "Canada");
+      person1.display();
+      person2.display();
+
+      //   2.Write a JavaScript program to create a class called 'Rectangle' with properties for width and height. Include two methods to calculate rectangle area and perimeter. Create an instance of the 'Rectangle' class and calculate its area and perimeter.
+
+      class Rectangle {
+        constructor(width, height) {
+          this.width = width;
+          this.height = height;
+        }
+
+        calculateArea() {
+          return this.width * this.height;
+        }
+
+        calculatePerimeter() {
+          return 2 * (this.width + this.height);
+        }
+      }
+      const myRectangle = new Rectangle(5, 8);
+
+      console.log("Rectangle Area:", myRectangle.calculateArea());
+      console.log("Rectangle Perimeter:", myRectangle.calculatePerimeter());
+
+      // 3.Write a JavaScript program that creates a class called "BankAccount" with properties for account number and balance. Include methods to deposit and withdraw money from the account. Create some instances of the "BankAccount" class, deposit some money, and withdraw a portion of it.
+
+      class BankAccount {
+        constructor(accountNumber, balance) {
+          this.accountNumber = accountNumber;
+          this.balance = balance;
+        }
+
+        deposit(amount) {
+          this.balance += amount;
+          console.log(`Deposited $${amount}. New balance: $${this.balance}`);
+        }
+
+        withdraw(amount) {
+          if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log(`Withdrawn $${amount}. New balance: $${this.balance}`);
+          } else {
+            console.log("Insufficient funds. Withdrawal unsuccessful.");
+          }
+        }
+      }
+
+      // Creating instances of the 'BankAccount' class
+      const account1 = new BankAccount("A12345", 1000);
+      const account2 = new BankAccount("B67890", 500);
+
+      // Depositing and withdrawing money
+      account1.deposit(200);
+      account1.withdraw(50);
+
+      account2.deposit(300);
+      account2.withdraw(100);
+
+      // 4.Write a JavaScript program that creates a class called 'Shape' with a method to calculate the area. Create two subclasses, 'Circle' and 'Triangle', that inherit from the 'Shape' class and override the area calculation method. Create an instance of the 'Circle' class and calculate its area. Similarly, do the same for the 'Triangle' class.
+      class Shape {
+        calculateArea() {
+          console.log("This method should be overridden by subclasses.");
+          return null;
+        }
+      }
+
+      class Circle extends Shape {
+        constructor(radius) {
+          super();
+          this.radius = radius;
+        }
+
+        calculateArea() {
+          return Math.PI * this.radius ** 2;
+        }
+      }
+
+      class Triangle extends Shape {
+        constructor(base, height) {
+          super();
+          this.base = base;
+          this.height = height;
+        }
+
+        calculateArea() {
+          return (this.base * this.height) / 2;
+        }
+      }
+
+      // Creating an instance of the 'Circle' class
+      const myCircle = new Circle(5);
+
+      // Calculating and displaying the area of the circle
+      console.log("Circle Area:", myCircle.calculateArea());
+
+      // Creating an instance of the 'Triangle' class
+      const myTriangle = new Triangle(4, 7);
+
+      // Calculating and displaying the area of the triangle
+      console.log("Triangle Area:", myTriangle.calculateArea());
+
+      // 5.Write a JavaScript program that creates a class called 'Employee' with properties for name and salary. Include a method to calculate annual salary. Create a subclass called 'Manager' that inherits from the 'Employee' class and adds an additional property for department. Override the annual salary calculation method to include bonuses for managers. Create two instances of the 'Manager' class and calculate their annual salary.
+      class Employee {
+        constructor(name, salary) {
+          this.name = name;
+          this.salary = salary;
+        }
+
+        calculateAnnualSalary() {
+          return this.salary * 12;
+        }
+      }
+
+      class Manager extends Employee {
+        constructor(name, salary, department) {
+          super(name, salary);
+          this.department = department;
+        }
+
+        calculateAnnualSalary() {
+          const bonus = 0.1 * this.salary;
+          return super.calculateAnnualSalary() + bonus;
+        }
+      }
+
+      const manager1 = new Manager("aj", 60000, "Marketing");
+      const manager2 = new Manager("shan ", 70000, "Finance");
+
+      console.log(
+        `${manager1.name} (${
+          manager1.department
+        }) Annual Salary: $${manager1.calculateAnnualSalary()}`
+      );
+      console.log(
+        `${manager2.name} (${
+          manager2.department
+        }) Annual Salary: $${manager2.calculateAnnualSalary()}`
+      );
+     
+      // 6.Write a JavaScript program that creates a class `Book` with properties for title, author, and publication year. Include a method to display book details. Create a subclass called 'Ebook' that inherits from the 'Book' class and includes an additional property for book price. Override the display method to include the book price. Create an instance of the 'Ebook' class and display its details
+
+      class Book {
+        constructor(title, author, publicationYear) {
+          this.title = title;
+          this.author = author;
+          this.publicationYear = publicationYear;
+        }
+
+        displayDetails() {
+          console.log(
+            `Title: ${this.title}, Author: ${this.author}, Year: ${this.publicationYear}`
+          );
+        }
+      }
+
+      class Ebook extends Book {
+        constructor(title, author, publicationYear, price) {
+          super(title, author, publicationYear);
+          this.price = price;
+        }
+
+        displayDetails() {
+          super.displayDetails();
+          console.log(`Price: $${this.price}`);
+        }
+      }
+
+      const myEbook = new Ebook(
+        "The Coding Adventure",
+        "John Coder",
+        2022,
+        9.99
+      );
+
+      myEbook.displayDetails();
+    </script>
+  </body>
+</html>
